@@ -1,6 +1,8 @@
 import request from "request";
-import { token } from "../../middleware/authorization";
 const endpoint = "http://localhost:3000/order";
+import jwt, { Secret } from "jsonwebtoken";
+import { getToken } from "../../middleware/authorization";
+const SERECT = process.env.SECRET_KEY as Secret;
 
 describe("Order API", () => {
       const user = {
@@ -15,12 +17,14 @@ describe("Order API", () => {
             quantity: 2,
       };
 
+      const token = getToken(user);
+
       it("should get order", (done) => {
             request.get(
                   endpoint,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                   },
                   (err, res) => {
                         expect(res.statusCode).toEqual(200);
@@ -33,7 +37,7 @@ describe("Order API", () => {
                   `${endpoint}/1`,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                   },
                   (err, res) => {
                         expect(res.statusCode).toEqual(200);
@@ -46,7 +50,7 @@ describe("Order API", () => {
                   `${endpoint}/current-order/1`,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                   },
                   (err, res) => {
                         expect(res.statusCode).toEqual(200);
@@ -77,7 +81,7 @@ describe("Order API", () => {
                   `${endpoint}/1`,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                         body: {
                               user_id: "5",
                               status: "oke",
@@ -94,7 +98,7 @@ describe("Order API", () => {
                   `${endpoint}/1`,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                   },
                   (err, res) => {
                         expect(res.statusCode).toEqual(200);

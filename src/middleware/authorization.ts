@@ -24,6 +24,6 @@ export const authorization = (req: Request, res: Response, next: NextFunction) =
             return;
       }
 };
-export const token = (user: User): string => {
-      return jwt.sign(user, SERECT)
-}
+export const getToken = (user: User): string => {
+      return jwt.sign(user, SERECT);
+};

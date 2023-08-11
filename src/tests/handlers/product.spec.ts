@@ -1,5 +1,5 @@
 import request from "request";
-import { token } from "../../middleware/authorization";
+import { getToken } from "../../middleware/authorization";
 const endpoint = "http://localhost:3000/products";
 
 describe("Products API", () => {
@@ -15,6 +15,7 @@ describe("Products API", () => {
             description: "book book book",
       };
 
+      const token = getToken(user);
       it("should return list product", (done) => {
             request.get(endpoint, (err, res) => {
                   expect(res.statusCode).toEqual(200);
@@ -32,7 +33,7 @@ describe("Products API", () => {
                   endpoint,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                         body: p,
                   },
                   (err, res) => {
@@ -46,7 +47,7 @@ describe("Products API", () => {
                   `${endpoint}/3`,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                         body: {
                               name: "pen",
                               price: "1000",
@@ -64,7 +65,7 @@ describe("Products API", () => {
                   `${endpoint}/4`,
                   {
                         json: true,
-                        auth: { bearer: token(user) },
+                        auth: { bearer: token },
                   },
                   (err, res) => {
                         expect(res.statusCode).toEqual(200);

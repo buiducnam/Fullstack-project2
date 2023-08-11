@@ -38,30 +38,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var product_1 = require("../../models/product");
 var store = new product_1.Products();
-describe('Product Model', function () {
-    it('should create a product', function () { return __awaiter(void 0, void 0, void 0, function () {
+describe("Product Model", function () {
+    it("should create a product", function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, store.create({
                         id: 1,
-                        name: 'Test product',
+                        name: "Test product",
                         price: 100,
-                        description: 'Test category',
+                        description: "Test category",
                     })];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual({
                         id: "3",
-                        name: 'Test product',
+                        name: "Test product",
                         price: 100,
-                        description: 'Test category'
+                        description: "Test category",
                     });
                     return [2 /*return*/];
             }
         });
     }); });
-    it('should update a product', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it("should update a product", function () { return __awaiter(void 0, void 0, void 0, function () {
         var products, productId, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -71,18 +71,18 @@ describe('Product Model', function () {
                     productId = products[0].id;
                     return [4 /*yield*/, store.update({
                             id: productId,
-                            name: 'Test product 3',
+                            name: "Test product 3",
                             price: 100,
-                            description: 'ok',
+                            description: "ok",
                         })];
                 case 2:
                     result = _a.sent();
-                    expect(result.name).toEqual('Test product 3');
+                    expect(result.name).toEqual("Test product 3");
                     return [2 /*return*/];
             }
         });
     }); });
-    it('should return a list of products', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it("should return a list of products", function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -94,7 +94,7 @@ describe('Product Model', function () {
             }
         });
     }); });
-    it('should return the correct product', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it("should return the correct product", function () { return __awaiter(void 0, void 0, void 0, function () {
         var products, productId, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -105,12 +105,12 @@ describe('Product Model', function () {
                     return [4 /*yield*/, store.show(productId)];
                 case 2:
                     result = _a.sent();
-                    expect(result.name).toEqual('Test product');
+                    expect(result.name).toEqual("Test product");
                     return [2 /*return*/];
             }
         });
     }); });
-    it('should delete the product', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it("should delete the product", function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {

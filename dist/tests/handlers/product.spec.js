@@ -18,6 +18,7 @@ describe("Products API", function () {
         price: "1000",
         description: "book book book",
     };
+    var token = (0, authorization_1.getToken)(user);
     it("should return list product", function (done) {
         request_1.default.get(endpoint, function (err, res) {
             expect(res.statusCode).toEqual(200);
@@ -33,7 +34,7 @@ describe("Products API", function () {
     it("should create product", function (done) {
         request_1.default.post(endpoint, {
             json: true,
-            auth: { bearer: (0, authorization_1.token)(user) },
+            auth: { bearer: token },
             body: p,
         }, function (err, res) {
             expect(res.statusCode).toEqual(201);
@@ -43,7 +44,7 @@ describe("Products API", function () {
     it("should update product", function (done) {
         request_1.default.put("".concat(endpoint, "/3"), {
             json: true,
-            auth: { bearer: (0, authorization_1.token)(user) },
+            auth: { bearer: token },
             body: {
                 name: "pen",
                 price: "1000",
@@ -57,7 +58,7 @@ describe("Products API", function () {
     it("should delete user", function (done) {
         request_1.default.delete("".concat(endpoint, "/4"), {
             json: true,
-            auth: { bearer: (0, authorization_1.token)(user) },
+            auth: { bearer: token },
         }, function (err, res) {
             expect(res.statusCode).toEqual(200);
             done();
